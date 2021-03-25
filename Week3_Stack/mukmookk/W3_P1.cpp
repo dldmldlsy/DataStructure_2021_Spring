@@ -59,20 +59,6 @@ int Stack::pop()
     return x;
 }
  
-//int Stack::peek(int index)
-//{
-//    int x = -1;
-//    if (_top-index+1 < 0 || _top-index+1 == size)
-//    {
-//        cout << "Index error" << endl;
-//    }
-//    else
-//    {
-//        x = S[_top-index+1];
-//    }
-//    return x;
-//}
- 
 int Stack::isFull()
 {
     if (_top == size-1) // _top의 값이 허용하는 인덱스 끝에 있다면
@@ -113,7 +99,7 @@ int Stack::top()
     return S[_top];
 }
 
-void interface(Stack st, int cases)
+void interface(Stack* st, int cases)
 {
     string m;
     int value;
@@ -121,17 +107,17 @@ void interface(Stack st, int cases)
     {
         cin >> m;
         if (m == "empty")
-            st.isEmpty();
+            st->isEmpty();
         else if (m == "top")
-            st.top();
+            st->top();
         else if (m == "push")
         {
             cin >> value;
-            st.push(value);
+            st->push(value);
         }
         else if (m == "pop")
-            st.pop();
-        cin.ignore(INT_MAX, '\n');
+            st->pop();
+        cin.ignore(256, '\n');
         cases--;
     }
 }
@@ -139,15 +125,13 @@ void interface(Stack st, int cases)
  
 int main()
 {
- 
-    int cases = 0;
     int st_size = 0;
-    cin >> st_size >> cases;
+    int cases = 0;
+    cin >> cases;
+    Stack stk(1000);
  
-    Stack stk(st_size);
- 
-    interface(st_size, cases);
+    interface(&stk, cases);
     
- 
     return 0;
 }
+
